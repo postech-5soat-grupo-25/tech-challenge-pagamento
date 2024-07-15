@@ -1,0 +1,14 @@
+name: Deploy Lambda
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - skip
+
+jobs:
+  deploy:
+    name: Check
+    uses: postech-5soat-grupo-25/tech-challenge-templates/.github/workflows/deploy-lambda.yml@main
+    secrets:
+      script: deploy-lambda-pagamentos.sh
