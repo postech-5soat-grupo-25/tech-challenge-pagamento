@@ -1,7 +1,7 @@
 # Tech Challenge | PosTech 5SOAT • Grupo 25
 
 ![microservice](https://img.shields.io/badge/pagamento-blue?label=microsservi%C3%A7o&labelColor=%23505050&color=%23d63865) 
-[![sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=postech-5soat-grupo-25_tech-challenge-pagamento&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-5soat-grupo-25_tech-challenge-pagamento) [![codecov](https://codecov.io/gh/postech-5soat-grupo-25/tech-challenge-usuario-cliente/graph/badge.svg?token=VQF5TUQ2VB)](https://codecov.io/gh/postech-5soat-grupo-25/tech-challenge-usuario-cliente)
+[![sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=postech-5soat-grupo-25_tech-challenge-pagamento&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-5soat-grupo-25_tech-challenge-pagamento) [![codecov](https://codecov.io/gh/postech-5soat-grupo-25/tech-challenge-pagamento/graph/badge.svg?token=AJH0KIYID8)](https://codecov.io/gh/postech-5soat-grupo-25/tech-challenge-pagamento)
 
 ## Sobre o Projeto
 
