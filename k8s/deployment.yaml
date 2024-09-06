@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamentos-app
+  labels:
+    app: pagamentos-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pagamentos-app
+  template:
+    metadata:
+      labels:
+        app: pagamentos-app
+    spec:
+      containers:
+        - name: pagamentos-app-container
+          image: mblopes/tech-challenge-pagamentos:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: cluster-config
+                  key: mongo-url
+            - name: RABBITMQ-URI
+              valueFrom:
+                configMapKeyRef:
+                  name: cluster-config
+                  key: rabbitmq-url
