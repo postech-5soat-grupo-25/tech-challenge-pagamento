@@ -28,26 +28,31 @@ public class PagamentosWebhookController {
 
     @PostMapping
     public void webhookPagamento(
-        @RequestBody WebhookPagamentoDto webhookPayload,
-        @RequestParam(name = "payment_id", required = true) String paymentId
-    ) {
+            @RequestBody WebhookPagamentoDto webhookPayload,
+            @RequestParam(name = "payment_id", required = true) String paymentId) {
 
         Pagamento pagamentoSalvo = pagamentoRepository.findById(paymentId).orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paymento Not Found")
-        );
-        
-        if ("success".equals(webhookPayload.getPaymentStatus())){
-            
-            PaymentMessageDto payload = new PaymentMessageDto(
-                pagamentoSalvo.getIdPedido(),
-                pagamentoSalvo.getId(),
-                "Confirmado"
-            );
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paymento Not Found"));
 
-            pagamentoSalvo.setEstado("Confirmado");
+        if ("success".equals(webhookPayload.getPaymentStatus())) {
+
+            // Conversão de idPedido para Integer
+            Integer idPedidoInteger = null;
+            try {
+                idPedidoInteger = Integer.parseInt(pagamentoSalvo.getIdPedido());
+            } catch (NumberFormatException e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid order ID format");
+            }
+
+            PaymentMessageDto payload = new PaymentMessageDto(
+                    idPedidoInteger, // Aqui está o idPedido convertido para Integer
+                    pagamentoSalvo.getId(),
+                    "Aprovado");
+
+            pagamentoSalvo.setEstado("Aprovado");
             rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, "pagamentos", payload);
         } else {
-            pagamentoSalvo.setEstado("Falha");
+            pagamentoSalvo.setEstado("Recusado");
         }
 
         pagamentoRepository.save(pagamentoSalvo);

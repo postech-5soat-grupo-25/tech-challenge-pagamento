@@ -7,15 +7,15 @@ deploy-mongo:
 	kubectl apply -f ./k8s/mongo-express-service.yaml
 
 deploy-rabbit:
-	kubectl delete -f ./k8s/rabbitmq-deployment.yaml
-	kubectl delete -f ./k8s/rabbitmq-service.yaml
+	-kubectl delete -f ./k8s/rabbitmq-deployment.yaml
+	-kubectl delete -f ./k8s/rabbitmq-service.yaml
 	kubectl apply -f ./k8s/rabbitmq-deployment.yaml
 	kubectl apply -f ./k8s/rabbitmq-service.yaml
 
 local-deploy:
-	kubectl delete -f ./k8s/deployment.yaml
-	kubectl delete -f ./k8s/services.yaml
-	kubectl delete -f ./k8s/configmap.yaml
+	-kubectl delete -f ./k8s/deployment.yaml
+	-kubectl delete -f ./k8s/services.yaml
+	-kubectl delete -f ./k8s/configmap.yaml
 	kubectl apply -f ./k8s/deployment.yaml
 	kubectl apply -f ./k8s/services.yaml
 	kubectl apply -f ./k8s/configmap.yaml
@@ -28,7 +28,7 @@ build-image:
 	docker rmi mblopes/tech-challenge-pagamentos:latest
 
 delete-from-cluster:
-	kubectl delete -f ./k8s/deployment.yaml
-	kubectl delete -f ./k8s/services.yaml
+	-kubectl delete -f ./k8s/deployment.yaml
+	-kubectl delete -f ./k8s/services.yaml
 
 full-local-deploy: build-image local-deploy
