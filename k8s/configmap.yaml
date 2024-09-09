@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+data:
+  mongo-url: mongodb://mongoadmin:password@mongodb-service:27017/admin
+  rabbitmq-url: rabbitmq-service.default

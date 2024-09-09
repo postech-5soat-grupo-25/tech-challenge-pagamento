@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management
+          ports:
+            - containerPort: 5672  # Porta padrão para comunicação do RabbitMQ
+            - containerPort: 15672 # Porta para o RabbitMQ Management Plugin
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "user"  # Usuário padrão
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "password"  # Senha padrão     
