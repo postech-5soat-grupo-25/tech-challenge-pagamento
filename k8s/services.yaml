@@ -4,11 +4,10 @@ metadata:
   name: pagamentos-service
   namespace: default
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: pagamentos-app
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 32100
