@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: pagamentos-app-container
-          image: mblopes/tech-challenge-pagamentos:latest
+          image: 891376965147.dkr.ecr.us-east-1.amazonaws.com/pagamentos_api:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
