@@ -4,7 +4,7 @@ metadata:
   name: pagamentos-service
   namespace: default
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: pagamentos-app
   ports:
