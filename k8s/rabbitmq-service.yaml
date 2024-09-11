@@ -19,6 +19,7 @@ kind: Service
 metadata:
   name: rabbitmq-management
 spec:
+  type: LoadBalancer
   selector:
     app: rabbitmq
   ports:
@@ -26,5 +27,3 @@ spec:
       protocol: TCP
       port: 15672
       targetPort: 15672
-      nodePort: 31672
-  type: NodePort
