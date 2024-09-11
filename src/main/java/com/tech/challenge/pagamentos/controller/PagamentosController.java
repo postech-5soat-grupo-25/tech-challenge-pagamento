@@ -38,7 +38,7 @@ public class PagamentosController {
 
         Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
 
-        MockPagamentoRequest mockRequest = new MockPagamentoRequest("http://pagamentos-service:32100/webhook?payment_id=" + pagamento.getId(), pagamento.getValor());
+        MockPagamentoRequest mockRequest = new MockPagamentoRequest("http://pagamentos-service:8080/webhook?payment_id=" + pagamento.getId(), pagamento.getValor());
 
         try {
             String jsonBody = objectMapper.writeValueAsString(mockRequest);
