@@ -47,7 +47,7 @@ public class PagamentosController {
             e.printStackTrace();
         }
 
-        ResponseEntity<String> response = restTemplate.postForEntity("http://mock-pagamentos-svc:31300/payment/", mockRequest, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://mock-pagamentos-svc:9000/payment/", mockRequest, String.class);
         
         HttpStatusCode statusCode = response.getStatusCode();
         
