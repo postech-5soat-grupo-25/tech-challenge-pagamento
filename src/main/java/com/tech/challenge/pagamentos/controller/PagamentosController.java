@@ -38,7 +38,7 @@ public class PagamentosController {
 
         Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
 
-        MockPagamentoRequest mockRequest = new MockPagamentoRequest("http://192.168.49.2:32100/webhook?payment_id=" + pagamento.getId(), pagamento.getValor());
+        MockPagamentoRequest mockRequest = new MockPagamentoRequest("http://pagamentos-service:32100/webhook?payment_id=" + pagamento.getId(), pagamento.getValor());
 
         try {
             String jsonBody = objectMapper.writeValueAsString(mockRequest);
@@ -47,7 +47,7 @@ public class PagamentosController {
             e.printStackTrace();
         }
 
-        ResponseEntity<String> response = restTemplate.postForEntity("http://192.168.49.2:31300/payment/", mockRequest, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://mock-pagamentos-svc:31300/payment/", mockRequest, String.class);
         
         HttpStatusCode statusCode = response.getStatusCode();
         
